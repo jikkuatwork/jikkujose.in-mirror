@@ -15,3 +15,5 @@ Focus gets lost when workspace is switched.
 ## Solution
 
 Disable the 'Desktop Icons NG' extension in the Extensions app
+
+![Extensions App](/assets/focus.png)
