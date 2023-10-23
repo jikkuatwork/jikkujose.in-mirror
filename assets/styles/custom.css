@@ -54,3 +54,8 @@
 .markdown-body .highlighter-rouge div.highlight {
   background: transparent;
 }
+
+.markdown-body ul,
+.markdown-body ol {
+  list-style: initial;
+}
