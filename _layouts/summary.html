@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body style="background: #0d1117">
+    <div
+      class="min-h-screen flex flex-col items-center"
+      style="background: #0d1117"
+    >
+      <!-- Title Section -->
+      <div class="title-card items-center w-full flex flex-col pt-6">
+        <div class="text-block w-full max-w-2xl px-6">
+          <div class="title text-2xl text-white mb-1">{{ page.title }}</div>
+          {% if page.subtitle %}
+          <div class="subtitle text-lg text-gray-400 mb-2">
+            {{ page.subtitle }}
+          </div>
+          {% endif %}
+          <div class="meta flex text-xs text-gray-500">
+            <time
+              class="timeago"
+              datetime="{{ page.date | date_to_xmlschema }}"
+            >
+              {{ page.date | date: "%B %d, %Y" }}
+            </time>
+            <div class="text-gray-600 px-1">by</div>
+            <a
+              href="{{ site.baseurl | append: '/about.html' }}"
+              class="author font-bold hover:text-gray-400"
+              >Jikku Jose</a
+            >
+            <div class="text-gray-600 px-1">in</div>
+            <a
+              href="{{ site.baseurl | append: '/' }}"
+              class="author font-bold hover:text-gray-400"
+              >jikkujose.in</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="max-w-2xl w-full p-6 pb-12">
+        <!-- Cover Image if available -->
+        {% if page.cover_image %}
+        <div class="mb-8">
+          <img
+            src="{{ page.cover_image }}"
+            alt="{{ page.title }}"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        {% endif %}
+
+        <!-- Summary Section -->
+        <div class="mb-8">
+          {% if page.short_summary %}
+          <div class="text-gray-300 text-lg mb-4 font-medium">
+            {{ page.short_summary }}
+          </div>
+          {% endif %} {% if page.long_summary %}
+          <div class="text-gray-400 mb-6">{{ page.long_summary }}</div>
+          {% endif %} {% if page.description %}
+          <div class="text-gray-500 text-sm">{{ page.description }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Audio Summary if available -->
+        {% if page.audio_summary %}
+        <div class="mb-8">
+          <h3 class="text-gray-300 text-lg font-medium mb-2">Audio Summary</h3>
+          <audio controls class="w-full">
+            <source src="{{ page.audio_summary }}" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        {% endif %}
+
+        <!-- Reference Links -->
+        {% if page.reference_links %}
+        <div class="mb-8">
+          <h3 class="text-gray-300 text-lg font-medium mb-2">
+            Reference Links
+          </h3>
+          <ul class="list-disc list-inside text-blue-400">
+            {% for link in page.reference_links %}
+            <li class="mb-1">
+              <a
+                href="{{ link.url }}"
+                class="hover:text-blue-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ link.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <!-- My Comments (Markdown Content) -->
+        <div class="markdown-body text-sm font-inter">{{ content }}</div>
+      </div>
+    </div>
+
+    <script>
+      timeago.render(document.querySelectorAll(".timeago"))
+    </script>
+  </body>
+</html>
