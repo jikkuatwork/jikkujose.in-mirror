@@ -59,3 +59,8 @@
 .markdown-body ol {
   list-style: initial;
 }
+
+.markdown-body li ul {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
