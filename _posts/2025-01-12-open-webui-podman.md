@@ -61,3 +61,35 @@ podman volume rm open-webui
 - Port forwarding unnecessary with host network
 - Container restarts survive host reboots
 - Volume persistence prevents data loss on container recreation
+
+## Updating Open WebUI
+
+```bash
+# Stop and remove current container
+podman stop open-webui
+podman rm open-webui
+
+# Pull latest image
+podman pull ghcr.io/open-webui/open-webui:main
+
+# Run container with same configuration
+podman run -d \
+  --name open-webui \
+  --network host \
+  -v open-webui:/app/backend/data \
+  -e OLLAMA_BASE_URL=http://127.0.0.1:11434 \
+  --restart=always \
+  ghcr.io/open-webui/open-webui:main
+```
+
+## Update Verification
+
+```bash
+# Check if container is running
+podman ps
+
+# Verify image timestamp
+podman images | grep open-webui
+```
+
+The volume persistence ensures all your settings and data remain intact during updates.
