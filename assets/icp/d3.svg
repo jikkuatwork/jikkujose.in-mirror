@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700">
+    <!-- Styles -->
+    <defs>
+        <linearGradient id="main-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#252842;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1E2235;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="sub-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#323750;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2A2F45;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="mid-layer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2B3661;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#232D50;stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="700" fill="#121212"/>
+
+    <!-- Decentralized AI Inference Ecosystem Box -->
+    <rect x="50" y="50" width="700" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="85" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Decentralized AI Inference Ecosystem</text>
+    
+    <!-- Services within Ecosystem -->
+    <rect x="75" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="145" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Marketplace</text>
+    <text x="145" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Core</text>
+    
+    <rect x="235" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="305" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Fine-tuning</text>
+    <text x="305" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Service</text>
+    
+    <rect x="395" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="465" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Model</text>
+    <text x="465" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Development</text>
+    
+    <rect x="555" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="625" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Data</text>
+    <text x="625" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Market</text>
+    
+    <!-- Connection Lines from Ecosystem -->
+    <line x1="145" y1="200" x2="145" y2="400" stroke="#6A98F0" stroke-width="2"/>
+    <line x1="305" y1="200" x2="305" y2="400" stroke="#6A98F0" stroke-width="2"/>
+    <line x1="465" y1="200" x2="465" y2="400" stroke="#6A98F0" stroke-width="2"/>
+    <line x1="625" y1="200" x2="625" y2="400" stroke="#6A98F0" stroke-width="2"/>
+    
+    <!-- Decentralized Compute Layer Box -->
+    <rect x="50" y="300" width="700" height="80" rx="10" ry="10" fill="url(#mid-layer-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="345" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Decentralized Compute Layer</text>
+    
+    <!-- Arrowheads -->
+    <polygon points="145,400 140,390 150,390" fill="#6A98F0"/>
+    <polygon points="305,400 300,390 310,390" fill="#6A98F0"/>
+    <polygon points="465,400 460,390 470,390" fill="#6A98F0"/>
+    <polygon points="625,400 620,390 630,390" fill="#6A98F0"/>
+    
+    <!-- Developer Ecosystem Box -->
+    <rect x="50" y="400" width="700" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="435" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Developer Ecosystem</text>
+    
+    <!-- Components within Developer Ecosystem -->
+    <rect x="75" y="470" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="145" y="515" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">AI Apps</text>
+    
+    <rect x="235" y="470" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="305" y="515" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Plugins</text>
+    
+    <rect x="395" y="470" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="465" y="505" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">SDKs</text>
+    <text x="465" y="525" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Libraries</text>
+    
+    <rect x="555" y="470" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="625" y="505" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Community</text>
+    <text x="625" y="525" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Tools</text>
+</svg>

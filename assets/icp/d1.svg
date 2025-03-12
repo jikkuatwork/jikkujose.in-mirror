@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680">
+    <!-- Styles -->
+    <defs>
+        <linearGradient id="main-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#252842;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1E2235;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="sub-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#323750;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2A2F45;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="bridge-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2D3250;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#252940;stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="680" fill="#121212"/>
+
+    <!-- Internet Computer Protocol Box -->
+    <rect x="100" y="50" width="600" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="85" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Internet Computer Protocol</text>
+    
+    <!-- Canisters within ICP -->
+    <rect x="150" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="220" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Marketplace</text>
+    <text x="220" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Canister</text>
+    
+    <rect x="330" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="400" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Payment</text>
+    <text x="400" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Canister</text>
+    
+    <rect x="510" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="580" y="160" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Identity</text>
+    <text x="580" y="180" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Canister</text>
+    
+    <!-- Connection Lines from ICP -->
+    <line x1="220" y1="200" x2="220" y2="300" stroke="#6A98F0" stroke-width="2"/>
+    <line x1="400" y1="200" x2="400" y2="300" stroke="#6A98F0" stroke-width="2"/>
+    <line x1="580" y1="200" x2="580" y2="300" stroke="#6A98F0" stroke-width="2"/>
+    
+    <!-- Arrowhead for Payment -->
+    <polygon points="400,300 395,290 405,290" fill="#6A98F0"/>
+    
+    <!-- HTTP Outbound Bridge Box -->
+    <rect x="100" y="300" width="600" height="80" rx="10" ry="10" fill="url(#bridge-bg-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="345" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">HTTP Outbound Bridge</text>
+    
+    <!-- Connection Line from Bridge to GCP -->
+    <line x1="220" y1="380" x2="220" y2="450" stroke="#6A98F0" stroke-width="2"/>
+    
+    <!-- Arrowhead -->
+    <polygon points="220,450 215,440 225,440" fill="#6A98F0"/>
+    
+    <!-- Google Cloud Platform Box -->
+    <rect x="100" y="450" width="600" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#6A98F0" stroke-width="2" filter="url(#glow)"/>
+    <text x="400" y="485" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0E0E0" text-anchor="middle">Google Cloud Platform</text>
+    
+    <!-- Resources within GCP -->
+    <rect x="150" y="520" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="220" y="555" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">GPU</text>
+    <text x="220" y="575" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Resources</text>
+    
+    <rect x="330" y="520" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="400" y="555" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">TPU</text>
+    <text x="400" y="575" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Resources</text>
+    
+    <rect x="510" y="520" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#6A98F0" stroke-width="2"/>
+    <text x="580" y="555" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">CPU</text>
+    <text x="580" y="575" font-family="Arial, sans-serif" font-size="16" fill="#E0E0E0" text-anchor="middle">Resources</text>
+</svg>

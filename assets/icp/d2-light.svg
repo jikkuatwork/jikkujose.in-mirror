@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+    <!-- Styles -->
+    <defs>
+        <linearGradient id="main-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F8F9FA;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#F1F3F5;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="sub-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#F8F9FA;stop-opacity:1" />
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="600" fill="#FFFFFF"/>
+
+    <!-- Internet Computer Protocol Box -->
+    <rect x="100" y="50" width="600" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#495057" stroke-width="2" filter="url(#shadow)"/>
+    <text x="400" y="85" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#212529" text-anchor="middle">Internet Computer Protocol</text>
+    
+    <!-- Canisters within ICP -->
+    <rect x="150" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="220" y="160" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Marketplace</text>
+    <text x="220" y="180" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Canister</text>
+    
+    <rect x="330" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="400" y="160" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Payment</text>
+    <text x="400" y="180" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Canister</text>
+    
+    <rect x="510" y="120" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="580" y="160" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Governance</text>
+    <text x="580" y="180" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Canister</text>
+    
+    <!-- Connection Lines from ICP -->
+    <line x1="220" y1="200" x2="220" y2="300" stroke="#6C757D" stroke-width="2"/>
+    <line x1="400" y1="200" x2="400" y2="300" stroke="#6C757D" stroke-width="2"/>
+    <line x1="580" y1="200" x2="580" y2="300" stroke="#6C757D" stroke-width="2"/>
+    
+    <!-- Arrowheads -->
+    <polygon points="220,300 215,290 225,290" fill="#6C757D"/>
+    <polygon points="400,300 395,290 405,290" fill="#6C757D"/>
+    <polygon points="580,300 575,290 585,290" fill="#6C757D"/>
+    
+    <!-- Decentralized Compute Network Box -->
+    <rect x="100" y="300" width="600" height="200" rx="10" ry="10" fill="url(#main-bg-gradient)" stroke="#495057" stroke-width="2" filter="url(#shadow)"/>
+    <text x="400" y="335" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#212529" text-anchor="middle">Decentralized Compute Network</text>
+    
+    <!-- Resources within DCN -->
+    <rect x="150" y="370" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="220" y="405" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">ICP Gen3</text>
+    <text x="220" y="425" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">GPU Nodes</text>
+    
+    <rect x="330" y="370" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="400" y="405" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">External</text>
+    <text x="400" y="425" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Providers</text>
+    
+    <rect x="510" y="370" width="140" height="80" rx="6" ry="6" fill="url(#sub-bg-gradient)" stroke="#495057" stroke-width="2"/>
+    <text x="580" y="405" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Hybrid</text>
+    <text x="580" y="425" font-family="Arial, sans-serif" font-size="16" fill="#212529" text-anchor="middle">Providers</text>
+</svg>
