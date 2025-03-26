@@ -3,7 +3,7 @@ layout: post
 title: Abstraction Lift
 description: How progressive technology abstraction layers are accelerating innovation
 date: 2025-03-27
-author: Your Name
+author: Jikku Jose
 tags: [technology, ai, innovation, programming]
 ---
 
