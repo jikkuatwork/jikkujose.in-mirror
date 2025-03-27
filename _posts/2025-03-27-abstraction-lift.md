@@ -13,7 +13,7 @@ The story of intelligence is the story of tool use. Every intelligence upgrade c
 
 Computing history reveals a clear pattern:
 
-| Era        | From         | To           | Developers | Skill Req. | Distance to Problem | Cost Reduction | Team Size |
+| Era        | From         | To           | Developers | Skill Req. | Distance to Problem | Cost           | Team Size |
 |------------|--------------|--------------|------------|------------|---------------------|----------------|-----------|
 | 1945-1955  | Vacuum Tubes | Transistors  | ~5K        | 0.9        | 0.9                 | 0.95           | 50+       |
 | 1955-1965  | Assembly     | C            | ~50K       | 0.8        | 0.8                 | 0.9            | 30-40     |
