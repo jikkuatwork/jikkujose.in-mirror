@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby '3.2.0'
+ruby '3.4.6'
 
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
@@ -26,6 +26,10 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
   gem "tzinfo-data"
 end
+
+gem "csv"
+gem "base64"
+gem "bigdecimal"
 
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
