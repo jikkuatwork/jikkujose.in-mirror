@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Supabase + Podman on macOS"
-excerpt: "Local Supabase development without Docker Desktop"
+excerpt: "Local Supabase development without Docker"
 ---
 
 [Supabase](https://supabase.com) is an open-source Firebase alternative
