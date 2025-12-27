@@ -120,7 +120,7 @@ instructions), **agency** (autonomous operation in loops), and **tools**
 (filesystem and network access via MCP). The same capabilities that make AI
 coding assistants useful make them dangerous when compromised.
 
-Researchers like [Dr. Anish Mohammed][anish] warn about broader risks: LLMs
+Researchers like [Dr. Anish Mohammed][@anish] ([talk][anish]) warn about broader risks: LLMs
 with access to lab equipment, sequencers, or critical infrastructure. Unlike
 humans, LLMs aren't "suicidal" - they'll execute whatever instructions they're
 given without self-preservation instincts limiting their actions.
@@ -131,6 +131,7 @@ keys, cloud credentials, or other projects.
 
 [anthropic]: https://www.anthropic.com/news/disrupting-AI-espionage
 [anish]: https://www.youtube.com/watch?v=3bMsWeWR7hI
+[@anish]: https://x.com/anishmohammed
 
 ## Security Model
 
