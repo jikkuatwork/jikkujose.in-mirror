@@ -54,7 +54,7 @@ the next layer can access.
 │  │   - Development tools, GUI applications         │  │
 │  │   - No access to host filesystem                │  │
 │  │                                                 │  │
-│  │  testman run kodeman ~/code/project             │  │
+│  │  testman run agentman ~/code/project            │  │
 │  │        │                                        │  │
 │  │        ▼                                        │  │
 │  │  ┌───────────────────────────────────────────┐  │  │
@@ -142,7 +142,7 @@ Testman orchestrates Podman containers within the VM:
 
 ```bash
 # Inside VM
-cd ~/Projects/testman/sandboxes/kodeman
+cd ~/Projects/testman/sandboxes/agentman
 ./run.zsh --name project --workspace ~/code/project
 ```
 
