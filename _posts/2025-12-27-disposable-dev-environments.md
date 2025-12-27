@@ -69,13 +69,15 @@ cd ~/Projects/kodemachine
 ### Build Golden Image (every ~6 months)
 
 ```bash
-./create-base.rb \
-  --dotfiles git@github.com:you/dotfiles.git \
-  --ssh-key ~/.ssh/id_ed25519.pub
+# Minimal - SSH key auto-detected from ~/.ssh/id_ed25519.pub
+./create-base.rb
+
+# With dotfiles
+./create-base.rb --dotfiles git@github.com:you/dotfiles.git
 ```
 
-This provisions Ubuntu with XFCE, browsers, fonts, and runs your dotfiles
-bootstrap. The result is a golden image ready for instant cloning.
+This provisions Ubuntu with XFCE, browsers, fonts, and optionally runs your
+dotfiles bootstrap. The result is a golden image ready for instant cloning.
 
 ### Daily Use
 
@@ -105,6 +107,30 @@ additional disk until files change.
 
 **Ephemeral containers.** Every `testman run` creates a fresh container with
 `--rm`. State is discarded. Config and logs persist via volume mounts.
+
+## Why Now: AI Agents Are a Security Risk
+
+This setup isn't paranoia - it's timely. In December 2025, Anthropic documented
+the [first large-scale AI-orchestrated cyberattack][anthropic]. Threat actors
+used Claude Code to compromise thirty organizations, accomplishing 80-90% of
+the campaign through AI automation with minimal human involvement.
+
+The attack exploited three AI capabilities: **intelligence** (following complex
+instructions), **agency** (autonomous operation in loops), and **tools**
+(filesystem and network access via MCP). The same capabilities that make AI
+coding assistants useful make them dangerous when compromised.
+
+Researchers like [Dr. Anish Mohammed][anish] warn about broader risks: LLMs
+with access to lab equipment, sequencers, or critical infrastructure. Unlike
+humans, LLMs aren't "suicidal" - they'll execute whatever instructions they're
+given without self-preservation instincts limiting their actions.
+
+The solution isn't to stop using AI tools - they're too useful. The solution is
+**defense in depth**: isolate them so a compromised agent can't access your SSH
+keys, cloud credentials, or other projects.
+
+[anthropic]: https://www.anthropic.com/news/disrupting-AI-espionage
+[anish]: https://www.youtube.com/watch?v=3bMsWeWR7hI
 
 ## Security Model
 
