@@ -1,65 +1,100 @@
 ---
 layout: post
 title: "Disposable Dev Environments"
-excerpt: "Three-layer isolation: dotfiles + kodemachine + testman"
+excerpt: "Three-layer isolation for safely running AI coding assistants"
 ---
 
-Development environments accumulate cruft. Package conflicts, stale configs,
-orphaned dependencies. Docker helps but isn't always enough. Full VMs are clean
-but slow to provision.
+AI coding assistants have changed how I work. Claude Code, Aider, Copilot—they
+write code, refactor functions, run tests, install packages. The productivity
+gains are real. But so are the risks.
 
-This is my solution: three projects that create disposable, reproducible
-environments at every layer.
+In December 2025, Anthropic published a sobering report: [Disrupting
+AI-Enabled Espionage][anthropic]. Threat actors had weaponized Claude Code to
+compromise thirty organizations. The attacks were 80-90% automated—humans only
+intervened at a handful of decision points. The AI handled reconnaissance,
+wrote exploits, harvested credentials, and exfiltrated data.
 
-## The Stack
+What made this possible? The same capabilities that make AI assistants useful:
+the intelligence to follow complex instructions, the agency to operate
+autonomously, and the tools to access filesystems and networks.
+
+As [Dr. Anish Mohammed][@anish] explores in his talk [Security on Synthetic
+Biology][anish], these risks extend beyond cyber attacks. When AI systems gain
+access to physical infrastructure—lab equipment, sequencers, industrial
+controls—the attack surface expands dramatically. Unlike humans, AI agents have
+no self-preservation instinct. They'll execute whatever instructions they
+receive, including instructions from attackers who've found ways to manipulate
+them.
+
+The answer isn't to stop using AI tools. They're too valuable. The answer is
+**isolation**—defense in depth that limits what a compromised agent can access.
+
+This is my solution: three projects that create disposable, isolated
+environments where AI assistants can operate without access to my SSH keys,
+cloud credentials, or other projects.
+
+## The Architecture
 
 ```
 ┌───────────────────────────────────────────────────────┐
 │ macOS Host                                            │
+│   - SSH keys, credentials stay here                   │
+│   - Only runs kodemachine                             │
 │                                                       │
 │  kodemachine start myproject                          │
 │        │                                              │
 │        ▼                                              │
 │  ┌─────────────────────────────────────────────────┐  │
 │  │ Linux VM (APFS clone, boots in seconds)         │  │
+│  │   - Development tools, browsers, GUI            │  │
+│  │   - No access to host filesystem                │  │
 │  │                                                 │  │
 │  │  testman run kodeman ~/code/myproject           │  │
 │  │        │                                        │  │
 │  │        ▼                                        │  │
 │  │  ┌───────────────────────────────────────────┐  │  │
 │  │  │ Ephemeral Container                       │  │  │
-│  │  │   └── Claude Code, neovim, your code      │  │  │
+│  │  │   - AI assistants run here                │  │  │
+│  │  │   - Filesystem limited to project         │  │  │
+│  │  │   - Syscall auditing via strace           │  │  │
 │  │  └───────────────────────────────────────────┘  │  │
 │  └─────────────────────────────────────────────────┘  │
 └───────────────────────────────────────────────────────┘
 ```
 
-Three layers of isolation. Each disposable. Each reproducible.
+Three layers. Each disposable. Each limiting what the next layer can access.
 
 ## The Projects
 
 | Project | Purpose | Layer |
 |---------|---------|-------|
-| [dotfiles](https://github.com/jikkujose/dotfiles) | Universal config (zsh, fish, nvim, tmux) | All |
-| [kodemachine](https://github.com/jikkuatwork/kodemachine) | VM orchestration via UTM | Host → VM |
-| [testman](https://github.com/jikkuatwork/testman) | Container orchestration via Podman | VM → Container |
+| [dotfiles][dotfiles] | Universal config (zsh, fish, nvim, tmux) | All |
+| [kodemachine][kodemachine] | VM orchestration via UTM | Host → VM |
+| [testman][testman] | Container orchestration via Podman | VM → Container |
+
+[dotfiles]: https://github.com/jikkujose/dotfiles
+[kodemachine]: https://github.com/jikkuatwork/kodemachine
+[testman]: https://github.com/jikkuatwork/testman
 
 ## Why Three Layers?
 
-**VMs alone aren't enough.** Running AI coding assistants (Claude Code, Aider,
-etc.) with full filesystem access inside my development VM felt risky. What if
-they install malicious packages? Exfiltrate code?
+**VMs alone aren't enough.** Running AI assistants with full filesystem access
+inside a development VM still felt risky. A compromised agent could install
+malicious packages, exfiltrate code, or pivot to other projects on the same
+machine.
 
-**Containers alone aren't enough.** I wanted GUI apps (browsers, desktop) with
-native ARM performance. Podman on macOS uses emulation. A Linux VM with Podman
-gives native speed.
+**Containers alone aren't enough.** I wanted GUI apps—browsers, desktop
+environments—with native ARM performance. Podman on macOS uses emulation. A
+Linux VM with Podman gives native speed plus proper isolation.
 
-**Both together:** VM provides the OS and GUI. Container provides syscall-level
-isolation for untrusted tools.
+**Both together:** The VM provides the OS, GUI, and a boundary from the host.
+The container provides syscall-level isolation for untrusted tools. Even if an
+AI agent is compromised, it can only access the specific project directory
+mounted into its container.
 
-## Workflow
+## The Workflow
 
-### One-Time Setup (per Mac)
+### One-Time Setup
 
 ```bash
 cd ~/Projects/kodemachine
@@ -69,15 +104,15 @@ cd ~/Projects/kodemachine
 ### Build Golden Image (every ~6 months)
 
 ```bash
-# Minimal - SSH key auto-detected from ~/.ssh/id_ed25519.pub
+# SSH key auto-detected from ~/.ssh/id_ed25519.pub
 ./create-base.rb
 
 # With dotfiles
 ./create-base.rb --dotfiles git@github.com:you/dotfiles.git
 ```
 
-This provisions Ubuntu with XFCE, browsers, fonts, and optionally runs your
-dotfiles bootstrap. The result is a golden image ready for instant cloning.
+This provisions Ubuntu with XFCE, browsers, fonts, and optionally bootstraps
+your dotfiles. The result is a golden image ready for instant cloning.
 
 ### Daily Use
 
@@ -93,86 +128,52 @@ cd ~/Projects/testman/sandboxes/kodeman
 kodemachine suspend work   # Instant pause
 ```
 
-## Key Design Decisions
+## Security Model
 
-**Stateless by default.** No shell history, no REPL history, no editor state.
-VMs and containers are disposable. Only the LUKS-encrypted shared disk persists
-code and credentials.
+The isolation is deliberate:
 
-**No gem dependencies.** All Ruby scripts use stdlib only (`json`, `fileutils`,
-`optparse`). Works with macOS system Ruby.
+- **Host (macOS):** Holds SSH keys and cloud credentials. Only runs
+  kodemachine. Never exposed to AI tools directly.
 
-**APFS copy-on-write.** Cloning a 64GB VM takes <1 second and uses zero
-additional disk until files change.
+- **VM (Ubuntu):** Development environment with browsers and GUI apps. Can
+  access the network but not the host filesystem. Runs testman to orchestrate
+  containers.
+
+- **Container (ephemeral):** Where AI assistants actually execute. Filesystem
+  access limited to the mounted project directory. Syscall logging via strace
+  captures everything the agent does. Destroyed after each session.
+
+An AI assistant running in this setup cannot read `~/.ssh`, `~/.aws`, or browse
+other projects. If it's compromised, the blast radius is limited to one project
+directory in one ephemeral container.
+
+## Design Decisions
+
+**Stateless by default.** No shell history, no REPL history, no editor state
+persists. VMs and containers are disposable. Only the LUKS-encrypted shared
+disk persists code and credentials between sessions.
+
+**No gem dependencies.** All Ruby scripts use stdlib only. Works with macOS
+system Ruby out of the box.
+
+**APFS copy-on-write.** Cloning a 64GB VM takes under a second and uses zero
+additional disk space until files actually change.
 
 **Ephemeral containers.** Every `testman run` creates a fresh container with
 `--rm`. State is discarded. Config and logs persist via volume mounts.
 
-## Why Now: AI Agents Are a Security Risk
-
-This setup isn't paranoia - it's timely. In December 2025, Anthropic documented
-the [first large-scale AI-orchestrated cyberattack][anthropic]. Threat actors
-used Claude Code to compromise thirty organizations, accomplishing 80-90% of
-the campaign through AI automation with minimal human involvement.
-
-The attack exploited three AI capabilities: **intelligence** (following complex
-instructions), **agency** (autonomous operation in loops), and **tools**
-(filesystem and network access via MCP). The same capabilities that make AI
-coding assistants useful make them dangerous when compromised.
-
-Researchers like [Dr. Anish Mohammed][@anish] ([talk][anish]) warn about broader risks: LLMs
-with access to lab equipment, sequencers, or critical infrastructure. Unlike
-humans, LLMs aren't "suicidal" - they'll execute whatever instructions they're
-given without self-preservation instincts limiting their actions.
-
-The solution isn't to stop using AI tools - they're too useful. The solution is
-**defense in depth**: isolate them so a compromised agent can't access your SSH
-keys, cloud credentials, or other projects.
-
-[anthropic]: https://www.anthropic.com/news/disrupting-AI-espionage
-[anish]: https://www.youtube.com/watch?v=3bMsWeWR7hI
-[@anish]: https://x.com/anishmohammed
-
-## Security Model
-
-```
-┌─────────────────────────────────────────┐
-│ Host (macOS)                            │
-│   - SSH keys for git                    │
-│   - Kodemachine only                    │
-└─────────────────────────────────────────┘
-         │ SSH
-         ▼
-┌─────────────────────────────────────────┐
-│ VM (Ubuntu)                             │
-│   - Dotfiles, dev tools                 │
-│   - Can browse, run GUI apps            │
-│   - Testman orchestrates containers     │
-└─────────────────────────────────────────┘
-         │ Podman
-         ▼
-┌─────────────────────────────────────────┐
-│ Container (ephemeral)                   │
-│   - AI assistants run here              │
-│   - Syscall auditing via strace         │
-│   - Network isolated (optional)         │
-│   - Filesystem limited to workspace     │
-└─────────────────────────────────────────┘
-```
-
-AI tools get filesystem access only to the project directory. They can't read
-`~/.ssh`, `~/.aws`, or other projects. Syscall logs capture everything they do.
-
 ## Practical Benefits
 
-- **Host access:** Dev servers inside the VM are accessible from macOS at the
-  VM's IP (bind to `0.0.0.0`, not localhost).
+Beyond security, this setup has everyday advantages:
 
 - **Fresh starts:** `kodemachine delete work && kodemachine start work` gives a
   pristine environment in seconds.
 
 - **Parallel projects:** Run multiple VMs concurrently, each with isolated
-  containers.
+  containers. No dependency conflicts.
+
+- **Host access:** Dev servers inside the VM are accessible from macOS at the
+  VM's IP.
 
 - **Portable config:** Same dotfiles work on Mac, Linux, servers, and inside
   containers.
@@ -190,13 +191,17 @@ AI tools get filesystem access only to the project directory. They can't read
 - **Learning curve:** Three projects to understand. But each is single-purpose
   and documented.
 
-## Implementation Notes
+## The Goal
 
-- UTM provides the hypervisor, `utmctl` provides CLI control
-- QEMU guest agent enables dynamic IP discovery
-- Podman runs rootless inside VMs
-- LUKS disk shared across VMs for persistent data
-- All scripts are idempotent and safe to re-run
+Development environments that boot fast, stay clean, isolate AI tools from
+sensitive data, and leave no trace when deleted.
 
-The goal: development environments that boot fast, stay clean, and leave no
-trace when deleted.
+The productivity benefits of AI coding assistants are too significant to
+ignore. But after reading Anthropic's report on AI-enabled attacks, running
+these tools with unrestricted access to my filesystem feels reckless. This
+three-layer approach lets me use them confidently—knowing that even in the
+worst case, the damage is contained.
+
+[anthropic]: https://www.anthropic.com/news/disrupting-AI-espionage
+[anish]: https://www.youtube.com/watch?v=3bMsWeWR7hI
+[@anish]: https://x.com/anishmohammed
