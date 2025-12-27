@@ -4,7 +4,7 @@ title: "Disposable Dev Environments"
 excerpt: "A three-layer isolation architecture for AI coding assistants"
 ---
 
-In December 2025, Anthropic published [Disrupting AI-Enabled
+In November 2025, Anthropic published [Disrupting AI-Enabled
 Espionage][anthropic]—a detailed account of the first documented large-scale
 cyberattack executed primarily through AI automation. Threat actors weaponized
 Claude Code to compromise approximately thirty organizations across technology,
