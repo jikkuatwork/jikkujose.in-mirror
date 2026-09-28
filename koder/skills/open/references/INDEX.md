@@ -22,7 +22,13 @@ Use this skill at the beginning of a work session in this repository. Opening is
    git rev-list --left-right --count @{u}...HEAD 2>/dev/null || true
    ```
    If this is not a Git repository, say so clearly and continue with the file-based hand-off.
-8. Summarize the hand-off as **Past**, **Present**, and **Future**. Include dirty/staged/untracked paths, branch and upstream drift, when relevant. Use project history only to clarify meaningful movement that the compact hand-off omits.
+   For this blog, also read `koder/docs/blog-workflow.md`, count files in `_posts/`
+   and `_drafts/`, and inspect the outstanding issue headers under `koder/issues/`.
+   Surface at most three draft candidates by path and the most relevant open or
+   backlog issue. Read only candidate frontmatter when checking readiness; do not
+   preload every article body. Missing frontmatter is a review caveat, not an
+   instruction to repair or publish. Counts do not prove live publication.
+8. Summarize the hand-off as **Past**, **Present**, and **Future**. Include draft/post counts, the next editorial or maintenance choice, and dirty/staged/untracked paths, branch and upstream drift, when relevant. Use project history only to clarify meaningful movement that the compact hand-off omits.
 9. Render the response using `FORMAT.md`:
    - use `━━━` separators, not Markdown horizontal rules;
    - keep the stat block compact;

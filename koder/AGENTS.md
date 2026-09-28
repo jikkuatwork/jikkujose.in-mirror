@@ -2,11 +2,35 @@
 
 This repo uses the koder pattern for durable agent handoff and project memory.
 
+## Blog workflow
+
+- This is a Jekyll 4 blog, not Hugo. Read `koder/docs/blog-workflow.md` for
+  content work, preview commands, and the publication checklist.
+- Writing lives in `_drafts/` and `_posts/`; assets live in `assets/`.
+  Operator memory is not a second copy of the articles or an editorial CMS.
+- Preserve the author's voice. Do not invent personal experiences, quotes,
+  citations, or results. Ask when material facts or editorial intent are missing.
+- Keep new writing in `_drafts/` unless publication is explicitly approved.
+  Do not promote drafts, change publication flags/dates, or change existing post
+  slugs/categories/permalinks without approval; these affect visibility and URLs.
+- Publishing is a separate gate: pushes to `master` trigger the checked-in Pages
+  workflow. Never push, dispatch a workflow, or deploy as part of `open`/`close`.
+- Validate content/layout/config changes with a production Jekyll build without
+  draft flags, plus a local draft render when relevant. Use the guide's commands;
+  a local build is not evidence that the hosted deployment succeeded.
+- Keep `koder/`, root operator Markdown, and harness adapters excluded in
+  `_config.yml`. Never commit `_site/`, Jekyll caches, or local dependency output.
+  Site exclusion is not Git privacy: drafts and operator notes must be safe to commit.
+- Use small issues for concrete follow-ups, not one issue per post. No queue or
+  delegated-agent machinery is needed for ordinary writing and maintenance.
+- `koder/plan-hugo-migration.md` is a preserved historical proposal, not an
+  authorization to migrate. Do not treat its old inventory as current state.
+
 ## Operator layout
 
 - Keep durable non-code agent/operator files under `koder/`.
 - Keep one physical copy of shared skills under `koder/skills/`. Root `AGENTS.md` (Pi/Codex), `CLAUDE.md` (Claude), `.pi/skills/*` (Pi), `.agents/skills/*` (Codex), and `.claude/skills/*` (Claude) should be relative symlinks/adapters to files under `koder/` when possible.
-- `README.md` is the root documentation exception because repository hosts render it directly; prefer other durable docs under `koder/docs/` unless project conventions require otherwise.
+- `README.md` and `CHANGELOG.md` are root documentation exceptions because repository hosts render them directly; prefer other durable docs under `koder/docs/` unless project conventions require otherwise.
 - Do not put product source code under `koder/` unless the project explicitly says so.
 
 ## Session handoff

@@ -24,6 +24,11 @@ prints anything.
    If this is not a Git repository, initialize it only when the user has asked to use the koder pattern or otherwise approved repository initialization.
 2. Review every changed path before committing. Check implementation, docs, tests, deleted files, permissions, and untracked files. Inspect for secrets, credentials, private payloads, generated output, caches, and unrelated work. Never use `git add -A` blindly.
 3. Run the repository's relevant tests, linters, formatters, validators, and `git diff --check`. Record failures honestly. Do not commit code that is known incomplete or unreviewed merely to make the status green.
+   For blog content/layout/config changes, follow `koder/docs/blog-workflow.md`:
+   run a production build without draft flags, render affected drafts locally as
+   needed, and check that operator files are absent from production output.
+   Handoff-only edits do not require a site rebuild. Never promote a draft or
+   push/deploy just to complete a close; publication needs separate owner approval.
 4. Run the scratch retention gate after tests and validators, before committing:
    ```bash
    koder/skills/close/bin/scratch-invariant.sh
@@ -34,7 +39,12 @@ prints anything.
    ```bash
    TZ='Asia/Kolkata' date '+%d %b %Y | %I:%M %p IST'
    ```
-   Keep it under 100 lines and update its Past/Present/Future hand-off. The hand-off change itself must be included in a grepable commit with subject `state: close - <semantic result>` and the commit body must name `State file: koder/STATE.md`, the session result, delta, and validation.
+   Keep it under 100 lines and update its Past/Present/Future hand-off. Include
+   the active draft/issue path, pending editorial or publication decisions,
+   validation evidence, and one concrete next action; do not copy article text.
+   The hand-off change itself must be included in a grepable commit with subject
+   `state: close - <semantic result>` and the commit body must name
+   `State file: koder/STATE.md`, the session result, delta, and validation.
 7. Re-run the final review after the state commit:
    ```bash
    wc -l koder/STATE.md

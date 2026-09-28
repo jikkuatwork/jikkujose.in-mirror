@@ -7,3 +7,18 @@ url: "https://jikkujose.in"
 
 plugins:
   - jekyll-feed
+
+# Repository operations and local tooling are not website content.
+exclude:
+  - koder
+  - AGENTS.md
+  - CLAUDE.md
+  - CHANGELOG.md
+  - README.md
+  - .pi
+  - .agents
+  - .claude
+  - .bundle
+  - Gemfile
+  - Gemfile.lock
+  - vendor
