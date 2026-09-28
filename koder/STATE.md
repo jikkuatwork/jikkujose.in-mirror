@@ -1,5 +1,5 @@
 ---
-updated_at: "28 Sep 2026 | 02:49 PM IST"
+updated_at: "28 Sep 2026 | 03:24 PM IST"
 ---
 
 # Koder State
@@ -28,12 +28,16 @@ updated_at: "28 Sep 2026 | 02:49 PM IST"
     `_drafts/2026-03-09-rebuild-electronics.md`, lacks frontmatter.
   - P3: `koder/issues/003_petite_vue_liquid_examples/INDEX.md` — existing Vue
     interpolation examples trigger Liquid warnings in draft rendering.
-- Validation: `bundle check`, koder-pattern doctor, scratch gate, YAML/frontmatter
-  and local-link checks, and `git diff --check` passed. Init dry-run is a no-op.
+- Adoption validation: `bundle check`, koder-pattern doctor, scratch gate,
+  YAML/frontmatter and local-link checks, and `git diff --check` passed.
+  Init dry-run is a no-op.
 - Production and `--drafts` builds with `--strict_front_matter` passed in temporary
   destinations (25/29 articles); expected site outputs exist and operator paths
   are absent. All four previewed drafts are absent from production. Draft rendering
   emitted the four existing warnings tracked in issue 003; no visual audit was done.
+- Close: setup work is committed through `8cce1c9`; all three issues remain backlog.
+  Doctor, handoff validation, scratch retention, and whitespace checks passed again.
+  This close changes only the handoff; unchanged site inputs did not need a rebuild.
 - Setup is local only: no push, deployment, content promotion, or dependency change.
 
 ## Future
