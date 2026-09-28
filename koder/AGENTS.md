@@ -13,8 +13,10 @@ This repo uses the koder pattern for durable agent handoff and project memory.
 - Keep new writing in `_drafts/` unless publication is explicitly approved.
   Do not promote drafts, change publication flags/dates, or change existing post
   slugs/categories/permalinks without approval; these affect visibility and URLs.
-- Publishing is a separate gate: pushes to `master` trigger the checked-in Pages
-  workflow. Never push, dispatch a workflow, or deploy as part of `open`/`close`.
+- Publishing is a separate gate: the current production route is the existing
+  Git-to-Vercel connection on `master`; the checked-in Pages workflow is disabled.
+  Verify the hosting state before publishing. Never push, dispatch a workflow,
+  or deploy as part of `open`/`close`.
 - Validate content/layout/config changes with a production Jekyll build without
   draft flags, plus a local draft render when relevant. Use the guide's commands;
   a local build is not evidence that the hosted deployment succeeded.

@@ -107,10 +107,24 @@ or `.claude/`. Inspect the homepage, the affected post, and `feed.xml` too.
    expected, other drafts remain absent, and operator files are not emitted.
 5. Review the diff and commit only intended files. A local commit is not a
    deployment. **Ask separately before pushing or triggering deployment.**
-6. `.github/workflows/jekyll.yml` is configured to deploy on pushes to `master`
-   or manual dispatch. Do not push simply to save progress. The checked-in Ruby
-   mismatch is tracked in [issue 001](../issues/001_pages_ruby_version/INDEX.md);
-   a successful local build does not establish hosted deployment readiness.
+6. After explicit deployment approval, push the intended commit to the existing
+   `origin` remote's `master` branch. The current production route is its
+   Git-to-Vercel connection. Check the Vercel status for that exact commit, then
+   verify the article, homepage entry, and `feed.xml` on <https://jikkujose.in>.
+   Confirm the intended content, not just an HTTP success code. Do not push
+   simply to save progress.
+
+Hosting preflight on 2026-09-28 found a successful Vercel production status for
+`master`, Vercel response headers behind the custom domain's Cloudflare edge,
+and the checked-in Pages workflow in `disabled_manually` state. Re-check these
+facts before future publication; a repository homepage URL may be stale.
+Useful read-only checks are `gh api repos/{owner}/{repo}/commits/<sha>/status`
+and `gh api repos/{owner}/{repo}/actions/workflows/jekyll.yml`.
+
+The Pages Ruby mismatch remains tracked in
+[issue 001](../issues/001_pages_ruby_version/INDEX.md), but it is not a blocker
+for the active Vercel route. Do not enable Pages, switch providers, or change
+cloud configuration as an incidental publishing fix.
 
 Never promote a draft, change its publication flag, or deploy as a side effect of
 `open`, `close`, or backlog cleanup. Keep draft preview services bound to loopback.

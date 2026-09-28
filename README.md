@@ -41,7 +41,10 @@ For a publication-style build, without drafts:
 JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter
 ```
 
-The checked-in GitHub Pages workflow deploys on pushes to `master`; publishing
-requires explicit owner approval. Its existing Ruby-version mismatch is tracked
-in [issue 001](koder/issues/001_pages_ruby_version/INDEX.md). No remote deployment
-status is assumed from a successful local build.
+Production uses the repository's existing Git-to-Vercel connection on `master`;
+publishing requires explicit owner approval. Verify the pushed commit's Vercel
+status and the public article on <https://jikkujose.in> before calling it live.
+The checked-in Pages workflow is manually disabled (verified 2026-09-28); its
+Ruby-version mismatch remains [issue 001](koder/issues/001_pages_ruby_version/INDEX.md),
+not a prerequisite for the active Vercel route. A local build is not deployment
+proof.

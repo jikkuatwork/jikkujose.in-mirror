@@ -4,6 +4,13 @@ This is a concise, newest-first record of meaningful project changes. Keep
 umbrella milestones rather than mirroring every commit. Current readiness belongs
 in `koder/STATE.md`, live Git state, and current validation.
 
+## 2026-09-28 — Universal File Envelope proposal
+
+- Added the reviewed UFE article with an illustrative envelope profile,
+  section-scoped signatures, and OS/browser integration trade-offs.
+- Corrected deployment guidance: production uses the existing Git-to-Vercel
+  connection; the legacy Pages workflow is manually disabled.
+
 ## 2026-09-28 — Koder-pattern adoption
 
 - Added durable session handoffs and shared `open`/`close` skills for Pi, Codex,

@@ -25,6 +25,13 @@ not checked during setup; do not infer the current live site's health from this.
 - [Pages workflow](../../../.github/workflows/jekyll.yml): Ruby setup and deploy trigger.
 - Adoption environment: Ruby `3.3.0`; `bundle check` passed locally.
 
+## Current Deployment Context
+
+Publication preflight on 2026-09-28 confirmed that production uses the existing
+Git-to-Vercel connection and the Pages workflow is `disabled_manually`.
+This issue remains a Pages-only backlog item, not a blocker for Vercel publication.
+See [the workflow guide](../../docs/blog-workflow.md) for hosting checks.
+
 ## Acceptance Criteria
 
 - [ ] The workflow uses a supported Ruby version satisfying `Gemfile` and the
